@@ -5,4 +5,6 @@
     <string name="user_location">user location</string>
     <string name="user_bio">user bio</string>
     <string name="user_name">User Name</string>
+    <string name="photos">Photos</string>
+    <string name="profile">Profile</string>
 </resources>

@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -40,9 +41,18 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        try{
-            getSupportActionBar().setTitle("Photos");
-        }catch (Exception ignore){}
+
+        setContentView(R.layout.activity_main);
+
+        // Find the toolbar and set it as the action bar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Check if the action bar is not null and set the title
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("PHOTOS");
+        }
+
         RecyclerView recyclerView = findViewById(R.id.idRVPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         userPostsList = new ArrayList<>();

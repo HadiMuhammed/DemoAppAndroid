@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -32,9 +33,15 @@ public class UserProfileActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        try{
-            getSupportActionBar().setTitle("Profile");
-        }catch (Exception ignore){}
+        // Find the toolbar and set it as the action bar
+        Toolbar toolbar = findViewById(R.id.toolbar_profile);
+        setSupportActionBar(toolbar);
+
+        // Check if the action bar is not null and set the title
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("PROFILE");
+        }
+
         userName = findViewById(R.id.id_user_name);
         userBio = findViewById(R.id.id_user_bio);
         userLocation = findViewById(R.id.id_user_location);

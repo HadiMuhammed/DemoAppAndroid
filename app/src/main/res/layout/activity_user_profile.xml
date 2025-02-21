@@ -8,6 +8,14 @@
     tools:context=".UserProfileActivity"
     android:background="@color/white"
     android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_profile"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:title="@string/profile" />
 
     <ImageView
         android:layout_width="match_parent"
