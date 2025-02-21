@@ -27,6 +27,7 @@ import okhttp3.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Photos");
         RecyclerView recyclerView = findViewById(R.id.idRVPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         userPostsList = new ArrayList<>();

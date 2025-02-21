@@ -12,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 public class UserProfileActivity extends AppCompatActivity {
 
     TextView userName;
@@ -30,7 +32,7 @@ public class UserProfileActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Profile");
         userName = findViewById(R.id.id_user_name);
         userBio = findViewById(R.id.id_user_bio);
         userLocation = findViewById(R.id.id_user_location);
