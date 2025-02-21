@@ -41,7 +41,7 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
         holder.userName.setText(post.getUserName() == null ? "No username found" : post.getUserName());
         holder.description.setText(post.getDescription() == null ? "No description found" : post.getDescription());
         Picasso.get().load(post.getImgUrl()).into(holder.post);
-        Picasso.get().load(post.getProfilePic()).into(holder.userImage); // Assuming both images use the same URL
+        Picasso.get().load(post.getProfilePic()).into(holder.userImage);
     }
 
     @Override
