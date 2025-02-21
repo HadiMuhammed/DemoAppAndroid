@@ -41,9 +41,12 @@ public class UserProfileActivity extends AppCompatActivity {
         String location = getIntent().getStringExtra("location");
         String imgUrl = getIntent().getStringExtra("imgUrl");
 
-        userName.setText(username == null ? "No username found" : username);
-        userBio.setText(bio == null ?  "No bio found" : bio);
-        userLocation.setText(location == null ? "No location data found" : location);
+        assert username != null;
+        userName.setText(username.equals("null") ? "No username found" : username);
+        assert bio != null;
+        userBio.setText(bio.equals("null") ?  "No bio found" : bio);
+        assert location != null;
+        userLocation.setText(location.equals("null") ? "No location data found" : location);
         Picasso.get().load(imgUrl).into(userImage);
 
     }
