@@ -34,7 +34,7 @@ public class UserPostActivity extends AppCompatActivity {
         String description = getIntent().getStringExtra("description");
         String imgUrl = getIntent().getStringExtra("imgUrl");
 
-        postDescription.setText(description);
+        postDescription.setText(description == null ? "No Description" : description);
         Picasso.get().load(imgUrl).into(postImage);
     }
 }
