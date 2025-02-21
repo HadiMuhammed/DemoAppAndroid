@@ -78,6 +78,13 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
                     showProfile(getAdapterPosition());
                 }
             });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showItem(getAdapterPosition());
+                }
+            });
         }
     }
 
@@ -88,6 +95,16 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
             intent.putExtra("userName", post.getUserName());
             intent.putExtra("bio", post.getUserBio());
             intent.putExtra("location", post.getUserLocation());
+            intent.putExtra("imgUrl", post.getProfilePic());
+            context.startActivity(intent);
+        }
+    }
+
+    public void showItem(int pos) {
+        if(pos != RecyclerView.NO_POSITION) {
+            UserPostsModel post = postsModalArrayList.get(pos);
+            Intent intent = new Intent(context, UserPostActivity.class);
+            intent.putExtra("description", post.getDescription());
             intent.putExtra("imgUrl", post.getImgUrl());
             context.startActivity(intent);
         }
