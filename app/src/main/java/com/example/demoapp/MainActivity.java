@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 String imgUrl = post.getJSONObject("urls").getString("small");
                 String description = post.has("description") ? post.getString("description") : "No description";
                 String userName = post.getJSONObject("user").getString("username");
-                String profilePic = post.getJSONObject("user").getJSONObject("profile_image").getString("small");
+                String profilePic = post.getJSONObject("user").getJSONObject("profile_image").getString("large");
                 String userBio = post.getJSONObject("user").has("bio") ? post.getJSONObject("user").getString("bio") : "No bio available";
                 String userLocation = post.getJSONObject("user").has("location") ? post.getJSONObject("user").getString("location") : "No location available";
                 userPostsList.add(new UserPostsModel(imgUrl, description, userName, profilePic, userBio, userLocation));
