@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,55 +65,47 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
             userName = itemView.findViewById(R.id.idUserName);
 
             // User image click
-            userImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showProfile(getAdapterPosition());
-                }
-            });
+            userImage.setOnClickListener(v -> showProfile(getAdapterPosition()));
 
             // Username click
-            userName.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    showProfile(getAdapterPosition());
-                }
-            });
+            userName.setOnClickListener(v -> showProfile(getAdapterPosition()));
 
-            post.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    showItem(getAdapterPosition());
-                }
-            });
+            post.setOnClickListener(view -> showItem(getAdapterPosition()));
 
-            description.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    showItem(getAdapterPosition());
-                }
-            });
+            description.setOnClickListener(view -> showItem(getAdapterPosition()));
         }
     }
 
-    public void showProfile(int pos) {;
+    public void showProfile(int pos) {
         if (pos != RecyclerView.NO_POSITION) {
-            UserPostsModel post = postsModalArrayList.get(pos);
-            Intent intent = new Intent(context, UserProfileActivity.class);
-            intent.putExtra("userName", post.getUserName());
-            intent.putExtra("bio", post.getUserBio());
-            intent.putExtra("location", post.getUserLocation());
-            intent.putExtra("imgUrl", post.getProfilePic());
-            context.startActivity(intent);
+            try {
+                UserPostsModel post = postsModalArrayList.get(pos);
+                Intent intent = new Intent(context.getApplicationContext(), UserProfileActivity.class);
+                intent.putExtra("userName", post.getUserName());
+                intent.putExtra("bio", post.getUserBio());
+                intent.putExtra("location", post.getUserLocation());
+                intent.putExtra("imgUrl", post.getProfilePic());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.getApplicationContext().startActivity(intent);
+            }
+            catch (Exception e) {
+                Toast.makeText(context.getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     public void showItem(int pos) {
         if(pos != RecyclerView.NO_POSITION) {
-            UserPostsModel post = postsModalArrayList.get(pos);
-            Intent intent = new Intent(context, UserPostActivity.class);
-            intent.putExtra("description", post.getDescription());
-            intent.putExtra("imgUrl", post.getImgUrl());
-            context.startActivity(intent);
+            try{
+                UserPostsModel post = postsModalArrayList.get(pos);
+                Intent intent = new Intent(context.getApplicationContext(), UserPostActivity.class);
+                intent.putExtra("description", post.getDescription());
+                intent.putExtra("imgUrl", post.getImgUrl());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.getApplicationContext().startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(context.getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

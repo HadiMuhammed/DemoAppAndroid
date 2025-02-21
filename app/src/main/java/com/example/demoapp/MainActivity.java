@@ -60,16 +60,10 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
-            final Handler handler = new Handler(Looper.getMainLooper());
 
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(MainActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                Log.e("Error", e.toString());
             }
 
             @Override
@@ -82,20 +76,8 @@ public class MainActivity extends AppCompatActivity {
                         JSONArray data = new JSONArray(responseBody);
                         FillData(data);
                     } catch (Exception e) {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(MainActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        Log.e("Error", e.toString());
                     }
-                } else {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-                        }
-                    });
                 }
             }
         });
