@@ -2,10 +2,7 @@ package com.example.demoapp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -27,7 +24,6 @@ import okhttp3.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Photos");
+        try{
+            getSupportActionBar().setTitle("Photos");
+        }catch (Exception ignore){}
         RecyclerView recyclerView = findViewById(R.id.idRVPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         userPostsList = new ArrayList<>();

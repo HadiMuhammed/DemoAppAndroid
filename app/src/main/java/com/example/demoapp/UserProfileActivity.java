@@ -32,7 +32,9 @@ public class UserProfileActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Profile");
+        try{
+            getSupportActionBar().setTitle("Profile");
+        }catch (Exception ignore){}
         userName = findViewById(R.id.id_user_name);
         userBio = findViewById(R.id.id_user_bio);
         userLocation = findViewById(R.id.id_user_location);

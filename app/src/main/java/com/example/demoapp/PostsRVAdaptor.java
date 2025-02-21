@@ -70,9 +70,11 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
             // Username click
             userName.setOnClickListener(v -> showProfile(getAdapterPosition()));
 
-            post.setOnClickListener(view -> showItem(getAdapterPosition()));
+//            post.setOnClickListener(view -> showItem(getAdapterPosition()));
+//
+//            description.setOnClickListener(view -> showItem(getAdapterPosition()));
 
-            description.setOnClickListener(view -> showItem(getAdapterPosition()));
+            itemView.setOnClickListener(view -> showItem(getAdapterPosition()));
         }
     }
 
