@@ -41,7 +41,7 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
         holder.userName.setText(post.getUserName());
         holder.description.setText(post.getDescription());
         Picasso.get().load(post.getImgUrl()).into(holder.post);
-        Picasso.get().load(post.getImgUrl()).into(holder.userImage); // Assuming both images use the same URL
+        Picasso.get().load(post.getProfilePic()).into(holder.userImage); // Assuming both images use the same URL
     }
 
     @Override
@@ -79,7 +79,14 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
                 }
             });
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            post.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showItem(getAdapterPosition());
+                }
+            });
+
+            description.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     showItem(getAdapterPosition());
