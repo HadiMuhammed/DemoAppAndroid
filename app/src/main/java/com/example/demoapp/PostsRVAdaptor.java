@@ -38,8 +38,8 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
     public void onBindViewHolder(@NonNull PostsRVAdaptor.ViewHolder holder, int position) {
         // setting data to our text views from our modal class.
         UserPostsModel post = postsModalArrayList.get(position);
-        holder.userName.setText(post.getUserName());
-        holder.description.setText(post.getDescription());
+        holder.userName.setText(post.getUserName() == null ? "No username found" : post.getUserName());
+        holder.description.setText(post.getDescription() == null ? "No description found" : post.getDescription());
         Picasso.get().load(post.getImgUrl()).into(holder.post);
         Picasso.get().load(post.getProfilePic()).into(holder.userImage); // Assuming both images use the same URL
     }
