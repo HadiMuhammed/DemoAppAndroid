@@ -13,6 +13,7 @@
         android:id="@+id/id_post_image"
         android:layout_width="match_parent"
         android:layout_marginTop="150dp"
+        android:importantForAccessibility="no"
         android:src="@color/cardview_dark_background"
         android:layout_height="300dp" />
 
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:textSize="15sp"
-        android:text="Description"
+        android:text="@string/description"
         android:textColor="@color/white" />
 
 

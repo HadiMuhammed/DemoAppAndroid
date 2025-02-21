@@ -1,5 +1,6 @@
 package com.example.demoapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -7,16 +8,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,7 +30,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private PostsRVAdaptor postsRVAdaptor;
     private ArrayList<UserPostsModel> userPostsList;
 
@@ -47,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        recyclerView = findViewById(R.id.idRVPosts);
+        RecyclerView recyclerView = findViewById(R.id.idRVPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         userPostsList = new ArrayList<>();
         postsRVAdaptor = new PostsRVAdaptor(getApplicationContext(), userPostsList);
@@ -63,11 +60,10 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
-            Handler handler = new Handler(Looper.getMainLooper());
+            final Handler handler = new Handler(Looper.getMainLooper());
 
             @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("NetworkError2", e.toString());
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -77,15 +73,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String responseBody = response.body().string();
+                    assert response.body() != null;
+                    String responseBody =  response.body().string();
                     Log.e("RealData", responseBody);
                     try {
                         JSONArray data = new JSONArray(responseBody);
                         FillData(data);
                     } catch (Exception e) {
-                        Log.e("NetworkError1", e.toString());
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
@@ -94,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 } else {
-                    Log.e("NetworkError1", response.toString());
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -105,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @SuppressLint("NotifyDataSetChanged")
     public void FillData(JSONArray data) {
         userPostsList.clear();
         for (int i = 0; i < data.length(); i++) {
@@ -118,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 String userLocation = post.getJSONObject("user").has("location") ? post.getJSONObject("user").getString("location") : "No location available";
                 userPostsList.add(new UserPostsModel(imgUrl, description, userName, profilePic, userBio, userLocation));
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("Error", e.toString());
             }
         }
         runOnUiThread(() -> postsRVAdaptor.notifyDataSetChanged());

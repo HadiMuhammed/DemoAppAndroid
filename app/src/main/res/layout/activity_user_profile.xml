@@ -8,40 +8,35 @@
     tools:context=".UserProfileActivity"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="80dp"
-            android:src="@drawable/ic_launcher_background"
-            android:id="@+id/id_profile_pic" />
-        <TextView
-            android:id="@+id/id_user_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="25dp"
-            android:text="Name"
-            android:textColor="@color/black" />
-        <TextView
-            android:id="@+id/id_user_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:text="user location"
-            android:textColor="@color/black" />
-        <TextView
-            android:id="@+id/id_user_bio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:text="user bio"
-            android:textColor="@color/black" />
-    </LinearLayout>
+        android:layout_height="200dp"
+        android:layout_margin="80dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_launcher_background"
+        android:id="@+id/id_profile_pic" />
+    <TextView
+        android:id="@+id/id_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:text="@string/name"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/id_user_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="@string/user_location"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/id_user_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="@string/user_bio"
+        android:textColor="@color/black" />
 </LinearLayout>

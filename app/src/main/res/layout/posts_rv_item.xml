@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/idPostsItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,34 +19,36 @@
             android:id="@+id/idPostImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:importantForAccessibility="no"
             android:scaleType="centerCrop"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:layout_margin="10dp" />
 
         <TextView
             android:id="@+id/idDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:text="Description"
+            android:text="@string/description"
             android:textColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UseCompoundDrawables">
             <ImageView
                 android:id="@+id/idUserImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginBottom="15dp">
+                android:layout_marginBottom="15dp"
+                android:importantForAccessibility="no">
             </ImageView>
             <TextView
                 android:id="@+id/idUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="User Name"
-                android:textSize="25dp"
+                android:text="@string/user_name"
+                android:textSize="25sp"
                 android:textColor="@color/design_default_color_primary" />
         </LinearLayout>
 
