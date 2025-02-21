@@ -1,6 +1,7 @@
 package com.example.demoapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,15 +64,32 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
             userImage = itemView.findViewById(R.id.idUserImage);
             userName = itemView.findViewById(R.id.idUserName);
 
-            //CardView itemClick listener
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    // item clicked
-                    int a = getAdapterPosition();
-                    UserPostsModel post = postsModalArrayList.get(a);
-                    Toast.makeText(context, "#" + post.getUserName(), Toast.LENGTH_SHORT).show();
+            // User image click
+            userImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showProfile(getAdapterPosition());
                 }
             });
+
+            // Username click
+            userName.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    showProfile(getAdapterPosition());
+                }
+            });
+        }
+    }
+
+    public void showProfile(int pos) {;
+        if (pos != RecyclerView.NO_POSITION) {
+            UserPostsModel post = postsModalArrayList.get(pos);
+            Intent intent = new Intent(context, UserProfileActivity.class);
+            intent.putExtra("userName", post.getUserName());
+            intent.putExtra("bio", post.getUserBio());
+            intent.putExtra("location", post.getUserLocation());
+            intent.putExtra("imgUrl", post.getImgUrl());
+            context.startActivity(intent);
         }
     }
 }
