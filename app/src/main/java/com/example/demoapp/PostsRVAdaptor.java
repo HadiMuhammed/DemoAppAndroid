@@ -37,10 +37,10 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
     public void onBindViewHolder(@NonNull PostsRVAdaptor.ViewHolder holder, int position) {
         // setting data to our text views from our modal class.
         UserPostsModel post = postsModalArrayList.get(position);
-        holder.userNameTV.setText(post.getUserName());
-        holder.descriptionTV.setText(post.getDescription());
-        Picasso.get().load(post.getImgUrl()).into(holder.postIV);
-        Picasso.get().load(post.getImgUrl()).into(holder.userIV); // Assuming both images use the same URL
+        holder.userName.setText(post.getUserName());
+        holder.description.setText(post.getDescription());
+        Picasso.get().load(post.getImgUrl()).into(holder.post);
+        Picasso.get().load(post.getImgUrl()).into(holder.userImage); // Assuming both images use the same URL
     }
 
     @Override
@@ -50,18 +50,18 @@ public class PostsRVAdaptor extends RecyclerView.Adapter<PostsRVAdaptor.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         // creating variables for our text views and image views.
-        private final TextView userNameTV;
-        private final TextView descriptionTV;
-        private final ImageView postIV;
-        private final ImageView userIV;
+        private final TextView userName;
+        private final TextView description;
+        private final ImageView post;
+        private final ImageView userImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // initializing our views.
-            postIV = itemView.findViewById(R.id.idPostImage);
-            descriptionTV = itemView.findViewById(R.id.idDescription);
-            userIV = itemView.findViewById(R.id.idUserImage);
-            userNameTV = itemView.findViewById(R.id.idUserName);
+            post = itemView.findViewById(R.id.idPostImage);
+            description = itemView.findViewById(R.id.idDescription);
+            userImage = itemView.findViewById(R.id.idUserImage);
+            userName = itemView.findViewById(R.id.idUserName);
 
             //CardView itemClick listener
             itemView.setOnClickListener(new View.OnClickListener() {

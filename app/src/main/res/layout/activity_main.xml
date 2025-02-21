@@ -18,7 +18,7 @@
             and we are making nested scroll for our
             recycler view as false-->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/idRVCourses"
+            android:id="@+id/idRVPosts"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
