@@ -19,6 +19,7 @@ public class UserProfileActivity extends AppCompatActivity {
     TextView userLocation;
     ImageView userImage;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
